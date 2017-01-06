@@ -10,16 +10,36 @@
 
 	    <!-- Custom CSS -->
 	    <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
-
-	    <!-- Morris Charts CSS -->
-	    <link href="../vendor/morrisjs/morris.css" rel="stylesheet">
-
 	    <!-- Custom Fonts -->
 	    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
       <script src="../vendor/jquery/jquery.min.js"></script>
-      <script type="text/javascript">
 
+      <script type="text/javascript">
+        $(document).ready(function() {
+
+          $('#BtnAgregar').click(function(){
+
+            var obtener = $("#Form").serialize();
+            if($('#nombre_docen').val() == "")
+            {
+              alert("No puedes dejar vacios los campos");
+            }
+            else {
+              $.ajax({
+                  type: "POST",
+                  url: "../utilities/php/insert.php",
+                  data: obtener,
+                  success: function(resp) {
+                    //Aca vemos el return de la funcion php
+                    console.log(resp);
+                    $('#nombre_docen').val("");
+                  }
+              });
+            }
+                return false; //Agregamos el Return para que no Recargue la Pagina al Enviar el Formulario
+          });
+        });
       </script>
 	</head>
 	<body>
@@ -28,7 +48,6 @@
 
 			<!--Sidebar-->
 			<?php include "../utilities/sidebar.php"; ?>
-
 
         <!-- Inicio -->
         <div id="page-wrapper">
@@ -49,10 +68,10 @@
                       <div class="panel-body">
                           <div class="row">
                               <div class="col-lg-6">
-                                  <form role="form">
+                                  <form id="Form" role="form">
                                       <div class="form-group">
-                                          <label>Text Input with Placeholder</label>
-                                          <input class="form-control" placeholder="">
+                                          <label>Nombre docente</label>
+                                          <input id="nombre_docen" name="nombre_docen" class="form-control" placeholder="Ingrese el nombre del docente">
                                       </div>
 
                                       <div class="form-group">
@@ -65,7 +84,9 @@
                                           <textarea class="form-control" rows="3"></textarea>
                                       </div>
 
-                                      <button type="submit" class="btn btn-default">Agregar</button>
+                                      <label id="docentes" value="docentes"></label>
+
+                                      <button id="BtnAgregar" type="submit" class="btn btn-default">Agregar</button>
                                       <button type="reset" class="btn btn-default">Limpiar</button>
                                   </form>
                               </div>
@@ -118,11 +139,6 @@
 
     <!-- Metis Menu Plugin JavaScript -->
     <script src="../vendor/metisMenu/metisMenu.min.js"></script>
-
-    <!-- Morris Charts JavaScript -->
-    <script src="../vendor/raphael/raphael.min.js"></script>
-    <script src="../vendor/morrisjs/morris.min.js"></script>
-    <script src="../data/morris-data.js"></script>
 
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
