@@ -2,7 +2,7 @@
 
   function conectaDB()
   {
-    $con = new PDO('mysql:host=localhost;dbname=mmsn','decima', 'decima123');
+    $con = new PDO('mysql:host=localhost;dbname=mmsn','root', '123456');
     $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     return($con);
   }
@@ -16,8 +16,8 @@
   $sentencia = $db->prepare($consulta); // Aja xDDD
   if($sentencia->execute($array) > 0)
   {
-    echo "Exito prro"; //Lo que regresa xD
+    echo "Logrado"; //Lo que regresa xD
   }else{
-    echo "Surradeishon";
+    echo "Error";
   }
 ?>
