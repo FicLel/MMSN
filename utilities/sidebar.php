@@ -117,7 +117,7 @@
                             <a href="nuevo.php">Nuevo docente</a>
                         </li>
                         <li>
-                            <a href="morris.html">Morris.js Charts</a>
+                            <a data-toggle="collapse" data-target="#tab_doc">Administracion de Docentes</a>
                         </li>
                     </ul>
                     <!-- /.nav-second-level -->
