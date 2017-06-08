@@ -1,3 +1,6 @@
+<?php
+  require "../utilities/php/grados/consultar.php";
+?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -29,14 +32,25 @@
                 </div>
             </div>
 
-
+            <div class="panel-group">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 class="panel-title">
+                    <a data-toggle="collapse" href="#new_doc" aria-expanded="true">Agregar nueva alumna</a>
+                  </h4>
+                </div>
+                
+                <div id="new_doc" class="panel-collapse collapse">
             <!-- /.Aca va el vacil de la pagina -->
             <div class="row">
               <div class="col-lg-12">
                   <div class="panel panel-default">
                       <div class="panel-heading">
-                          Agregar nueva alumna.
+                          <h4 class="panel-title">
+                            <a data-toggle="collapse" href="#new_doc" aria-expanded="true">Agregar nueva alumna</a>
+                          </h4>
                       </div>
+
                       <div class="panel-body">
                           <div class="row">
                               <div class="col-lg-12">
@@ -63,6 +77,16 @@
                                               <label>Grado de ingreso:</label>
                                               <select id="grad_ingr" name="grad_ingr" class="form-control">
                                                 <option>Seleccione un grado</option>
+                                                <?php
+                                                    $Consulta = "SELECT * From grados";
+                                                    $Result = Ejecucion($Consulta , array());
+                                                    foreach ($Result as $fila) {
+                                                      echo '
+                                                      
+                                                        <option id="'.$fila['id_grado'].'" value="'.$fila['id_grado'].'" data="'.$fila['id_grado'].'">'.$fila['nombre_grado'].'</option>
+                                                        ';
+                                                    }
+                                                  ?>
                                               </select>
                                             </div>
                                         </div>
@@ -261,6 +285,58 @@
               </div>
             </div>
             <!-- /.row -->
+          </div>
+        </div>
+        </div>
+            <!-- Comienza la tabla -->
+            <div class="panel-group">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 class="panel-title">
+                    <a data-toggle="collapse" href="#tab_doc">Ver</a>
+                  </h4>
+                </div>
+                <div id="tab_doc" class="panel-collapse collapse">
+                  <div class="panel-body">
+                    <h2>Administrador de alumnas</h2>
+                    <p>Seleccione una opcion:</p>
+                    <table class="table table-hover">
+                      <thead>
+                        <tr>
+                          <th>Nombre</th>
+                          <th>Fecha de nacimiento</th>
+                          <th>Opciones</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                    <?php
+                              $Consulta = "SELECT * From alumnas";
+                              $Result = Ejecucion($Consulta , array());
+                              foreach ($Result as $fila) {
+                                echo '
+                                <tr>
+                                  <td id="name-'.$fila['id_alum'].'" data="'.$fila['nomb_alum'].'">'.$fila['nomb_alum'].'
+                                  </td>
+                                  <td id="name-'.$fila['id_alum'].'" data="'.$fila['fecha_nac'].'">'.$fila['fecha_nac'].'
+                                  </td>
+                                  <td>
+                                    <div class="btn-group">
+                                      <button id="BtnEliminar" data-id="'.$fila['id_alum'].'" onclick="EliminarDato(this);"  type="button" class="btn btn-primary">Eliminar</button>
+                                      <button id="BtnModificar" data-id="'.$fila['id_alum'].'" onclick="CargarDatos(this);"  type="button" class="btn btn-primary">Modificar</button>
+                                    </div>
+                                  </td>
+                                </tr>';
+                              }
+                            ?>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            
+            </div>
+
+
         </div>
         <!-- /#page-wrapper -->
 
@@ -276,29 +352,29 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
-      <script type="text/javascript" src="../js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="../js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
       <script type="text/javascript" src="../js/locales/bootstrap-datetimepicker.fr.js" charset="UTF-8"></script>
 
       <script type="text/javascript">
         
         $(document).ready(function() {
-
+          $('#new_doc').collapse();
           $('#BtnAgregar').click(function(){
 
             var obtener = $("#Form").serialize();
-            if($('#nombre_docen').val() == "")
+            if($('#nombre_alum').val() == "")
             {
               alert("No puedes dejar vacios los campos");
             }
             else {
               $.ajax({
                   type: "POST",
-                  url: "../utilities/php/insert.php",
+                  url: "../utilities/php/alumnas/insert.php",
                   data: obtener,
                   success: function(resp) {
                     //Aca vemos el return de la funcion php
                     console.log(resp);
-                    $('#nombre_docen').val("");
+                    $('#nombre_alum').val("");
                   }
               });
             }

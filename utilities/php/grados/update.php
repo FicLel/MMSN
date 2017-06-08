@@ -1,7 +1,8 @@
 <?php
   require "../conexion.php";
 
-  $consulta = "UPDATE docentes SET nombre_docen =  '".$_POST['nombre_docen']."' WHERE id_docen = '".$_POST['id_docen']."'";
+  
+  $consulta = "UPDATE grados SET nombre_grado =  '".$_POST['nombre_grado']."' WHERE id_grado = '".$_POST['id_grado']."'";
 
   $db=conectaDB();//Conecta con la base
   $sentencia = $db->prepare($consulta); // Aja xDDD

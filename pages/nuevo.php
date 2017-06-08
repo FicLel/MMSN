@@ -148,7 +148,7 @@
 						      </h4>
 						    </div>
 						    <div id="tab_doc" class="panel-collapse collapse">
-									<div class="container">
+									<div class="panel-body">
 								    <h2>Administrador de docentes</h2>
 								    <p>Seleccione una opcion:</p>
 								    <table class="table table-hover">
@@ -163,27 +163,26 @@
 								        </tr>
 								      </thead>
 								      <tbody>
-												<?php
-					                $Consulta = "SELECT * From docentes";
-					                $Result = Ejecucion($Consulta , array());
-					                foreach ($Result as $fila) {
-					                  echo '
-														<tr>
-															<td id="name-'.$fila['id_docen'].'" data="'.$fila['nombre_docen'].'">'.$fila['nombre_docen'].'</td>
-															<td>'.$fila['edad'].'</td>
-															<td>'.$fila['estado_civil'].'</td>
-															<td>'.$fila['nacionalidad'].'</td>
-															<td>'.$fila['tel_cel'].'</td>
-															<td>
-																<div class="btn-group">
-																	<button id="BtnEliminar" data-id="'.$fila['id_docen'].'" onclick="EliminarDato(this);"  type="button" class="btn btn-primary">Eliminar</button>
-																	<button id="BtnModificar" data-id="'.$fila['id_docen'].'" onclick="CargarDatos(this);"  type="button" class="btn btn-primary">Modificar</button>
-																</div>
-															</td>
-														</tr>
-					                  ';
-					                }
-					              ?>
+										<?php
+							                $Consulta = "SELECT * From docentes";
+							                $Result = Ejecucion($Consulta , array());
+							                foreach ($Result as $fila) {
+							                  echo '
+																<tr>
+																	<td id="name-'.$fila['id_docen'].'" data="'.$fila['nombre_docen'].'">'.$fila['nombre_docen'].'</td>
+																	<td>'.$fila['edad'].'</td>
+																	<td>'.$fila['estado_civil'].'</td>
+																	<td>'.$fila['nacionalidad'].'</td>
+																	<td>'.$fila['tel_cel'].'</td>
+																	<td>
+																		<div class="btn-group">
+																			<button id="BtnEliminar" data-id="'.$fila['id_docen'].'" onclick="EliminarDato(this);"  type="button" class="btn btn-primary">Eliminar</button>
+																			<button id="BtnModificar" data-id="'.$fila['id_docen'].'" onclick="CargarDatos(this);"  type="button" class="btn btn-primary">Modificar</button>
+																		</div>
+																	</td>
+																</tr>';
+							                }
+							              ?>
 								      </tbody>
 								    </table>
 								  </div>
@@ -236,8 +235,8 @@
 
         $(document).ready(function() {
 
-					$('#new_doc').collapse();
-          $('.BtnGuardar').click(function(){
+		    $('#new_doc').collapse();
+            $('.BtnGuardar').click(function(){
 
             var obtener = $("#Form").serialize();
             if($('#id_docen').val() == "")

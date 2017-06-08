@@ -111,7 +111,7 @@
                     <a href="dash.php"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Docentes<span class="fa arrow"></span></a>
+                    <a href="#"><i class="fa fa-user fa-fw"></i> Docentes<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
                             <a href="nuevo.php">Nuevo docente</a>
@@ -126,12 +126,17 @@
                     <a href="#"><i class="fa fa-table fa-fw"></i> Alumnas<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="nuevaAlumna.php">Nueva Alumna</a>
+                            <a href="nuevaAlumna.php">Administrar Alumna</a>
                         </li>
                     </ul>
                 </li>
                 <li>
-                    <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Forms</a>
+                    <a href="forms.html"><i class="fa arrow"></i> Grados</a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="nuevoGrado.php">Administrar Grados</a>
+                        </li>
+                    </ul>
                 </li>
                 <li>
                     <a href="#"><i class="fa fa-wrench fa-fw"></i> UI Elements<span class="fa arrow"></span></a>

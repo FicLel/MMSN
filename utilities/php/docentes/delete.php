@@ -1,7 +1,7 @@
 <?php
   require "../conexion.php";
 
-  //Consulta cholera, no me acuerdo como dinamizar esto, pero lo hare mañana
+  
   $consulta = "DELETE FROM docentes WHERE id_docen = '".$_POST['id_docen']."'";
 
   $db=conectaDB();//Conecta con la base
